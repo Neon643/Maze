@@ -1,8 +1,8 @@
 use macroquad::prelude::*;
 
-use crate::graphics::point::Point;
+use crate::graphics::geometry::point::Point;
+use crate::graphics::geometry::rect_area::RectArea;
 use crate::graphics::pointer::Pointer;
-use crate::graphics::rect_area::RectArea;
 
 pub struct MacroquadPointer;
 

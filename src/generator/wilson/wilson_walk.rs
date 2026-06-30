@@ -1,6 +1,6 @@
 use crate::domain::maze::Maze;
 use crate::domain::position::Position;
-use crate::generator::generation_step::GenerationStep;
+use crate::generator::wilson::generation_step::GenerationStep;
 
 pub struct WilsonWalk {
     path: Vec<Position>,

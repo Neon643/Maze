@@ -5,13 +5,13 @@ use crate::animation::search_playback::SearchPlayback;
 use crate::app::app_state::AppState;
 use crate::app::maze_setup::MazeSetup;
 use crate::domain::position::Position;
-use crate::generator::wilson_generator::WilsonGenerator;
+use crate::generator::wilson::wilson_generator::WilsonGenerator;
 use crate::graphics::canvas::Canvas;
-use crate::graphics::control_action::ControlAction;
-use crate::graphics::control_panel::ControlPanel;
 use crate::graphics::draw_color::DrawColor;
-use crate::graphics::maze_painter::MazePainter;
+use crate::graphics::maze::maze_painter::MazePainter;
 use crate::graphics::pointer::Pointer;
+use crate::graphics::widgets::control_action::ControlAction;
+use crate::graphics::widgets::control_panel::ControlPanel;
 use crate::solver::depth_first_solver::DepthFirstSolver;
 
 pub struct MazeApp {

@@ -1,7 +1,7 @@
-use crate::graphics::button_style::ButtonStyle;
 use crate::graphics::canvas::Canvas;
+use crate::graphics::geometry::rect_area::RectArea;
 use crate::graphics::pointer::Pointer;
-use crate::graphics::rect_area::RectArea;
+use crate::graphics::widgets::button_style::ButtonStyle;
 
 pub struct Button {
     label: String,

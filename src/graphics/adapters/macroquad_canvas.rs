@@ -2,8 +2,8 @@ use macroquad::prelude::*;
 
 use crate::graphics::canvas::Canvas;
 use crate::graphics::draw_color::DrawColor;
-use crate::graphics::line_segment::LineSegment;
-use crate::graphics::rect_area::RectArea;
+use crate::graphics::geometry::line_segment::LineSegment;
+use crate::graphics::geometry::rect_area::RectArea;
 
 pub struct MacroquadCanvas;
 

@@ -1,7 +1,7 @@
 use crate::domain::maze_size::MazeSize;
 use crate::generator::random_positions::RandomPositions;
-use crate::generator::wilson_generation::WilsonGeneration;
-use crate::generator::wilson_generation_process::WilsonGenerationProcess;
+use crate::generator::wilson::wilson_generation::WilsonGeneration;
+use crate::generator::wilson::wilson_generation_process::WilsonGenerationProcess;
 
 #[derive(Debug)]
 pub struct WilsonGenerator {

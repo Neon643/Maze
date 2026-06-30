@@ -1,5 +1,5 @@
-use crate::graphics::line_segment::LineSegment;
-use crate::graphics::point::Point;
+use crate::graphics::geometry::line_segment::LineSegment;
+use crate::graphics::geometry::point::Point;
 
 #[derive(Clone, Copy)]
 pub struct RectArea {

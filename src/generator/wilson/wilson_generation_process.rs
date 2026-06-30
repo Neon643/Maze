@@ -1,11 +1,11 @@
 use crate::domain::maze::Maze;
 use crate::domain::maze_size::MazeSize;
 use crate::domain::position::Position;
-use crate::generator::generation_step::GenerationStep;
 use crate::generator::random_positions::RandomPositions;
-use crate::generator::wilson_generation::WilsonGeneration;
-use crate::generator::wilson_tree::WilsonTree;
-use crate::generator::wilson_walk::WilsonWalk;
+use crate::generator::wilson::generation_step::GenerationStep;
+use crate::generator::wilson::wilson_generation::WilsonGeneration;
+use crate::generator::wilson::wilson_tree::WilsonTree;
+use crate::generator::wilson::wilson_walk::WilsonWalk;
 
 pub struct WilsonGenerationProcess {
     maze: Maze,

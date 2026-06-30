@@ -1,7 +1,7 @@
-use crate::graphics::button::Button;
 use crate::graphics::canvas::Canvas;
-use crate::graphics::control_action::ControlAction;
 use crate::graphics::pointer::Pointer;
+use crate::graphics::widgets::button::Button;
+use crate::graphics::widgets::control_action::ControlAction;
 
 pub struct ControlPanel {
     generate_button: Button,

@@ -1,5 +1,5 @@
 use crate::domain::position::Position;
-use crate::generator::wilson_walk::WilsonWalk;
+use crate::generator::wilson::wilson_walk::WilsonWalk;
 use std::collections::HashSet;
 
 pub struct WilsonTree {

@@ -1,6 +1,6 @@
 use crate::domain::maze_size::MazeSize;
 use crate::domain::position::Position;
-use crate::graphics::rect_area::RectArea;
+use crate::graphics::geometry::rect_area::RectArea;
 
 pub struct MazeLayout {
     area: RectArea,

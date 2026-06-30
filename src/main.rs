@@ -9,10 +9,10 @@ use crate::app::maze_app::MazeApp;
 use crate::app::maze_setup::MazeSetup;
 use crate::domain::maze_size::MazeSize;
 use crate::generator::random_positions::RandomPositions;
-use crate::generator::wilson_generator::WilsonGenerator;
+use crate::generator::wilson::wilson_generator::WilsonGenerator;
+use crate::graphics::adapters::macroquad_canvas::MacroquadCanvas;
+use crate::graphics::adapters::macroquad_pointer::MacroquadPointer;
 use crate::graphics::app_layout::AppLayout;
-use crate::graphics::macroquad_canvas::MacroquadCanvas;
-use crate::graphics::macroquad_pointer::MacroquadPointer;
 
 use macroquad::prelude::*;
 

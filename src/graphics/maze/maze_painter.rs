@@ -1,10 +1,10 @@
 use crate::domain::maze::Maze;
 use crate::domain::position::Position;
 use crate::graphics::canvas::Canvas;
-use crate::graphics::line_segment::LineSegment;
-use crate::graphics::maze_layout::MazeLayout;
-use crate::graphics::maze_painter_style::MazePainterStyle;
-use crate::graphics::rect_area::RectArea;
+use crate::graphics::geometry::line_segment::LineSegment;
+use crate::graphics::geometry::rect_area::RectArea;
+use crate::graphics::maze::maze_layout::MazeLayout;
+use crate::graphics::maze::maze_painter_style::MazePainterStyle;
 
 pub struct MazePainter {
     area: RectArea,

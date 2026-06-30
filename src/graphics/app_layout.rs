@@ -1,10 +1,10 @@
-use crate::graphics::button::Button;
-use crate::graphics::button_style::ButtonStyle;
-use crate::graphics::control_panel::ControlPanel;
 use crate::graphics::draw_color::DrawColor;
-use crate::graphics::maze_painter::MazePainter;
-use crate::graphics::maze_painter_style::MazePainterStyle;
-use crate::graphics::rect_area::RectArea;
+use crate::graphics::geometry::rect_area::RectArea;
+use crate::graphics::maze::maze_painter::MazePainter;
+use crate::graphics::maze::maze_painter_style::MazePainterStyle;
+use crate::graphics::widgets::button::Button;
+use crate::graphics::widgets::button_style::ButtonStyle;
+use crate::graphics::widgets::control_panel::ControlPanel;
 
 pub struct AppLayout;
 

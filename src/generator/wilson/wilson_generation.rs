@@ -1,5 +1,5 @@
 use crate::domain::maze::Maze;
-use crate::generator::generation_step::GenerationStep;
+use crate::generator::wilson::generation_step::GenerationStep;
 
 pub struct WilsonGeneration {
     maze: Maze,
