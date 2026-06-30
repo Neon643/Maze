@@ -1,102 +1,62 @@
-use std::collections::HashSet;
-use std::sync::Mutex;
-
 use crate::domain::direction::Direction;
 use crate::domain::maze::Maze;
 use crate::domain::position::Position;
+use crate::solver::search_result::SearchResult;
 use crate::solver::search_step::SearchStep;
+use std::collections::HashSet;
 
 #[derive(Debug)]
-pub struct DepthFirstSolver;
+pub struct DepthFirstSolver<'a> {
+    maze: &'a Maze,
+    start: Position,
+    finish: Position,
+    visited: HashSet<Position>,
+    path: Vec<Position>,
+    steps: Vec<SearchStep>,
+}
 
-impl DepthFirstSolver {
-    pub fn solve(maze: &Maze, start: Position, finish: Position) -> Option<Vec<Position>> {
-        if !(maze.contains(start) && maze.contains(finish)) {
-            return None;
+impl<'a> DepthFirstSolver<'a> {
+    pub fn new(maze: &'a Maze, start: Position, finish: Position) -> Self {
+        Self {
+            maze,
+            start,
+            finish,
+            visited: HashSet::new(),
+            path: Vec::new(),
+            steps: Vec::new(),
+        }
+    }
+    pub fn solve_with_steps(mut self) -> SearchResult {
+        if !(self.maze.contains(self.start) && self.maze.contains(self.finish)) {
+            SearchResult::new(None, self.steps)
         } else {
-            let mut visited: HashSet<Position> = HashSet::new();
-            let mut path: Vec<Position> = Vec::new();
-            if !(Self::dfs(maze, start, finish, &mut visited, &mut path)) {
-                None
+            if self.visit(self.start) {
+                SearchResult::new(Some(self.path), self.steps)
             } else {
-                Some(path)
+                SearchResult::new(None, self.steps)
             }
         }
     }
 
-    fn dfs(
-        maze: &Maze,
-        current: Position,
-        finish: Position,
-        visited: &mut HashSet<Position>,
-        path: &mut Vec<Position>,
-    ) -> bool {
-        visited.insert(current);
-        path.push(current);
-        if current == finish {
-            return true;
+    fn visit(&mut self, current: Position) -> bool {
+        self.visited.insert(current);
+        self.path.push(current);
+        self.steps.push(SearchStep::Entered(current));
+        if current == self.finish {
+            self.steps.push(SearchStep::Finished(self.path.clone()));
+            true
         } else {
             for direction in Direction::ALL {
-                if let Some(next) = maze.neighbor(current, direction) {
-                    if !visited.contains(&next) && maze.has_passage(current, next) {
-                        if Self::dfs(maze, next, finish, visited, path) {
-                            return true;
-                        }
-                    } else {
-                    }
+                if let Some(next) = self.maze.neighbor(current, direction)
+                    && !self.visited.contains(&next)
+                    && self.maze.has_passage(current, next)
+                    && self.visit(next)
+                {
+                    return true;
                 }
             }
-            path.pop();
-            false
-        }
-    }
-
-    pub fn solve_with_steps(
-        maze: &Maze,
-        start: Position,
-        finish: Position,
-    ) -> (Option<Vec<Position>>, Vec<SearchStep>) {
-        if !(maze.contains(start) && maze.contains(finish)) {
-            return (None, Vec::new());
-        } else {
-            let mut steps: Vec<SearchStep> = Vec::new();
-            let mut visited: HashSet<Position> = HashSet::new();
-            let mut path: Vec<Position> = Vec::new();
-            if !(Self::dfs_with_steps(maze, start, finish, &mut visited, &mut path, &mut steps)) {
-                (None, Vec::new())
-            } else {
-                (Some(path), steps)
-            }
-        }
-    }
-
-    fn dfs_with_steps(
-        maze: &Maze,
-        current: Position,
-        finish: Position,
-        visited: &mut HashSet<Position>,
-        path: &mut Vec<Position>,
-        steps: &mut Vec<SearchStep>,
-    ) -> bool {
-        visited.insert(current);
-        path.push(current);
-        if current == finish {
-            steps.push(SearchStep::Finished(path.clone()));
-            return true;
-        } else {
-            for direction in Direction::ALL {
-                if let Some(next) = maze.neighbor(current, direction) {
-                    if !visited.contains(&next) && maze.has_passage(current, next) {
-                        steps.push(SearchStep::Entered(current));
-                        if Self::dfs_with_steps(maze, next, finish, visited, path, steps) {
-                            return true;
-                        }
-                    } else {
-                    }
-                }
-            }
-            path.pop();
-            steps.push(SearchStep::Backtraced(current));
+            self.path.pop();
+            self.steps.push(SearchStep::Backtracked);
             false
         }
     }

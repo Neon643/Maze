@@ -1,35 +1,31 @@
 use crate::domain::cell::Cell;
 use crate::domain::direction::Direction;
+use crate::domain::maze_size::MazeSize;
 use crate::domain::position::Position;
 
 #[derive(Debug, Clone)]
 pub struct Maze {
-    width: usize,
-    height: usize,
+    size: MazeSize,
     cells: Vec<Cell>,
 }
 
 impl Maze {
-    pub fn new(width: usize, height: usize) -> Self {
+    pub fn new(size: MazeSize) -> Self {
         let initial_cell = Cell::new();
-        let cells: Vec<Cell> = vec![initial_cell; width * height];
-        Self {
-            width,
-            height,
-            cells,
-        }
+        let cells: Vec<Cell> = vec![initial_cell; size.width() * size.height()];
+        Self { size, cells }
     }
 
     pub fn width(&self) -> usize {
-        self.width
+        self.size.width()
     }
 
     pub fn height(&self) -> usize {
-        self.height
+        self.size.height()
     }
 
     pub fn contains(&self, position: Position) -> bool {
-        position.row() < self.height && position.col() < self.width
+        position.row() < self.size.height() && position.col() < self.size.width()
     }
 
     pub fn neighbor(&self, position: Position, direction: Direction) -> Option<Position> {
@@ -56,8 +52,21 @@ impl Maze {
         }
     }
 
-    pub fn index(&self, position: Position) -> usize {
-        position.row() * self.width + position.col()
+    pub fn neighbors(&self, position: Position) -> Vec<Position> {
+        let neighbors: Vec<Position> = Direction::ALL
+            .iter()
+            .copied()
+            .filter_map(|direction| self.neighbor(position, direction))
+            .collect();
+        neighbors
+    }
+
+    fn index(&self, position: Position) -> usize {
+        position.row() * self.size.width() + position.col()
+    }
+
+    pub fn size(&self) -> MazeSize {
+        self.size
     }
 
     pub fn open_passage(&mut self, from: Position, to: Position) -> bool {
@@ -94,8 +103,8 @@ impl Maze {
     pub fn positions(&self) -> Vec<Position> {
         let mut positions: Vec<Position> = Vec::new();
 
-        for row in 0..self.height {
-            for col in 0..self.width {
+        for row in 0..self.size.height() {
+            for col in 0..self.size.width() {
                 positions.push(Position::new(row, col))
             }
         }
