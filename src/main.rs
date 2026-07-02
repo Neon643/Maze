@@ -3,6 +3,7 @@ mod app;
 mod domain;
 mod generator;
 mod graphics;
+mod solvation;
 mod solver;
 
 use crate::app::maze_app::MazeApp;
