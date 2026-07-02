@@ -1,13 +1,14 @@
 use crate::domain::{maze::Maze, position::Position};
 
+/// Maze path solving task.
+///
+/// Contains maze and boundary positions for solvation algorithm.
 pub struct SolvationTask {
     maze: Maze,
     start: Position,
     finish: Position,
 }
-/// Maze path solving task.
-///
-/// Contains maze and boundary positions for solvation algorithm.
+
 impl SolvationTask {
     /// Creates task for finding path from start to finish.
     pub fn new(maze: Maze, start: Position, finish: Position) -> Self {
