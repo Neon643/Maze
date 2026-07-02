@@ -3,6 +3,7 @@
 //! This module contains common contract, task, result and search events
 //! shared by concrete path finding strategies.
 
+pub mod dfs;
 pub mod search_event;
 pub mod solvation;
 pub mod solvation_result;
