@@ -1,18 +1,11 @@
-mod animation;
-mod app;
-mod domain;
-mod generator;
-mod graphics;
-mod solver;
-
-use crate::app::maze_app::MazeApp;
-use crate::app::maze_setup::MazeSetup;
-use crate::domain::maze_size::MazeSize;
-use crate::generator::random_positions::RandomPositions;
-use crate::generator::wilson::wilson_generator::WilsonGenerator;
-use crate::graphics::adapters::macroquad_canvas::MacroquadCanvas;
-use crate::graphics::adapters::macroquad_pointer::MacroquadPointer;
-use crate::graphics::app_layout::AppLayout;
+use mazeAlgorithm::app::maze_app::MazeApp;
+use mazeAlgorithm::app::maze_setup::MazeSetup;
+use mazeAlgorithm::domain::maze_size::MazeSize;
+use mazeAlgorithm::generator::random_positions::RandomPositions;
+use mazeAlgorithm::generator::wilson::wilson_generator::WilsonGenerator;
+use mazeAlgorithm::graphics::adapters::macroquad_canvas::MacroquadCanvas;
+use mazeAlgorithm::graphics::adapters::macroquad_pointer::MacroquadPointer;
+use mazeAlgorithm::graphics::app_layout::AppLayout;
 
 use macroquad::prelude::*;
 
