@@ -7,6 +7,7 @@ pub mod search_path;
 pub mod search_stage;
 pub mod search_state;
 pub mod search_trace;
+pub mod valid_search;
 pub mod visited_positions;
 
 pub use empty_search::EmptySearch;
@@ -16,4 +17,5 @@ pub use search_path::SearchPath;
 pub use search_stage::SearchStage;
 pub use search_state::SearchState;
 pub use search_trace::SearchTrace;
+pub use valid_search::ValidSearch;
 pub use visited_positions::VisitedPositions;
