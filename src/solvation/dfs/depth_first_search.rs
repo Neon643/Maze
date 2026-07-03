@@ -32,6 +32,7 @@ impl<S> DepthFirstSearch<S> {
 
     fn visit_moves(moves: &[Position], context: SearchContext) -> SearchOutcome {
         match moves.split_first() {
+            Some((next, rest)) if context.reached(*next) => Self::visit_moves(rest, context),
             Some((next, rest)) => match Self::visit(*next, context) {
                 SearchOutcome::Found(result) => SearchOutcome::found(result),
                 SearchOutcome::Searching(context) => Self::visit_moves(rest, context),
