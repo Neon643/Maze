@@ -16,13 +16,19 @@ impl SearchEvents {
         Self::default()
     }
 
-    /// Records visited position.
-    pub fn visited(&mut self, position: Position) {
-        self.events.push(SearchEvent::Visited(position));
+    /// Returns new events collection with visited position recorded.
+    pub fn visited(self, position: Position) -> Self {
+        let mut events = self.events;
+        events.push(SearchEvent::Visited(position));
+
+        Self { events }
     }
 
-    /// Records discarded position.
-    pub fn discarded(&mut self, position: Position) {
-        self.events.push(SearchEvent::Discarded(position));
+    /// Returns new events collection with discarded position recorded.
+    pub fn discarded(self, position: Position) -> Self {
+        let mut events = self.events;
+        events.push(SearchEvent::Discarded(position));
+
+        Self { events }
     }
 }
