@@ -45,4 +45,8 @@ impl SearchContext {
             trace: self.trace.backtracked(),
         }
     }
+    /// Returns positions reachable through opened passages.
+    pub fn passable_neighbors(&self, position: Position) -> Vec<Position> {
+        self.task.passable_neighbors(position)
+    }
 }

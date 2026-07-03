@@ -1,5 +1,4 @@
-use crate::domain::{maze::Maze, position::Position};
-
+use crate::domain::{direction::Direction, maze::Maze, position::Position};
 /// Maze path solving task.
 ///
 /// Contains maze and boundary positions for solvation algorithm.
@@ -24,5 +23,14 @@ impl SolvationTask {
     /// It only validates task boundaries.
     pub fn valid(&self) -> bool {
         self.maze.contains(self.start) && self.maze.contains(self.finish)
+    }
+    /// Returns maze positions directly reachable from given position.
+    pub fn passable_neighbors(&self, position: Position) -> Vec<Position> {
+        Direction::ALL
+            .iter()
+            .copied()
+            .filter_map(|direction| self.maze.neighbor(position, direction))
+            .filter(|neighbor| self.maze.has_passage(position, *neighbor))
+            .collect()
     }
 }
