@@ -6,6 +6,7 @@ use crate::graphics::widgets::button::Button;
 use crate::graphics::widgets::button_style::ButtonStyle;
 use crate::graphics::widgets::control_panel::ControlPanel;
 
+#[derive(Default)]
 pub struct AppLayout;
 
 impl AppLayout {

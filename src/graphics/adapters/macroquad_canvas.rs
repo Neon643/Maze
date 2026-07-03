@@ -4,7 +4,7 @@ use crate::graphics::canvas::Canvas;
 use crate::graphics::draw_color::DrawColor;
 use crate::graphics::geometry::line_segment::LineSegment;
 use crate::graphics::geometry::rect_area::RectArea;
-
+#[derive(Default)]
 pub struct MacroquadCanvas;
 
 impl MacroquadCanvas {

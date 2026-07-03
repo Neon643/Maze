@@ -20,6 +20,10 @@ impl WilsonTree {
         self.positions.len()
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.positions.is_empty()
+    }
+
     pub fn missing_from(&self, positions: &[Position]) -> Vec<Position> {
         let candidates: Vec<Position> = positions
             .iter()

@@ -1,16 +1,14 @@
 use crate::domain::direction::Direction;
 use std::collections::HashSet;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub struct Cell {
     opened_walls: HashSet<Direction>,
 }
 
 impl Cell {
     pub fn new() -> Self {
-        Self {
-            opened_walls: HashSet::new(),
-        }
+        Self::default()
     }
 
     pub fn open(&mut self, direction: Direction) {

@@ -1,6 +1,8 @@
 use crate::domain::position::Position;
-#[derive(Debug, Copy, Clone)]
+
+#[derive(Debug, Copy, Clone, Default)]
 pub struct RandomPositions;
+
 impl RandomPositions {
     pub fn new() -> Self {
         Self
