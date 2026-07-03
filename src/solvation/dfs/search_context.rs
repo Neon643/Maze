@@ -1,4 +1,5 @@
 use crate::domain::position::Position;
+use crate::solvation::SolvationResult;
 use crate::solvation::SolvationTask;
 use crate::solvation::dfs::SearchTrace;
 
@@ -48,5 +49,14 @@ impl SearchContext {
     /// Returns positions reachable through opened passages.
     pub fn passable_neighbors(&self, position: Position) -> Vec<Position> {
         self.task.passable_neighbors(position)
+    }
+    /// Converts context into successful solvation result.
+    pub fn succeeded(self) -> SolvationResult {
+        self.trace.succeeded()
+    }
+
+    /// Converts context into failed solvation result.
+    pub fn failed(self) -> SolvationResult {
+        self.trace.failed()
     }
 }
