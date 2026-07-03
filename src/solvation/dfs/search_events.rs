@@ -31,4 +31,17 @@ impl SearchEvents {
 
         Self { events }
     }
+
+    /// Returns new events collection with final path recorded.
+    pub fn finished(self, path: Vec<Position>) -> Self {
+        let mut events = self.events;
+        events.push(SearchEvent::Finished(path));
+
+        Self { events }
+    }
+
+    /// Consumes events collection.
+    pub(super) fn into_vec(self) -> Vec<SearchEvent> {
+        self.events
+    }
 }
