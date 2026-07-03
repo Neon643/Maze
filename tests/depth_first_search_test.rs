@@ -1,8 +1,8 @@
-use mazeAlgorithm::domain::maze::Maze;
-use mazeAlgorithm::domain::maze_size::MazeSize;
-use mazeAlgorithm::domain::position::Position;
-use mazeAlgorithm::solvation::SolvationTask;
-use mazeAlgorithm::solvation::dfs::{DepthFirstSearch, EmptySearch, SearchStage, ValidSearch};
+use maze_algorithm::domain::maze::Maze;
+use maze_algorithm::domain::maze_size::MazeSize;
+use maze_algorithm::domain::position::Position;
+use maze_algorithm::solvation::SolvationTask;
+use maze_algorithm::solvation::dfs::{DepthFirstSearch, EmptySearch, SearchStage, ValidSearch};
 
 #[test]
 fn solves_maze_when_path_exists() {

@@ -1,7 +1,7 @@
-use mazeAlgorithm::domain::maze::Maze;
-use mazeAlgorithm::domain::maze_size::MazeSize;
-use mazeAlgorithm::domain::position::Position;
-use mazeAlgorithm::solvation::SolvationTask;
+use maze_algorithm::domain::maze::Maze;
+use maze_algorithm::domain::maze_size::MazeSize;
+use maze_algorithm::domain::position::Position;
+use maze_algorithm::solvation::SolvationTask;
 
 #[test]
 fn valid_when_start_and_finish_inside_maze() {

@@ -1,8 +1,8 @@
-use mazeAlgorithm::domain::maze::Maze;
-use mazeAlgorithm::domain::maze_size::MazeSize;
-use mazeAlgorithm::domain::position::Position;
-use mazeAlgorithm::solvation::SolvationTask;
-use mazeAlgorithm::solvation::dfs::{AvailableMoves, EmptySearch, SearchStage};
+use maze_algorithm::domain::maze::Maze;
+use maze_algorithm::domain::maze_size::MazeSize;
+use maze_algorithm::domain::position::Position;
+use maze_algorithm::solvation::SolvationTask;
+use maze_algorithm::solvation::dfs::{AvailableMoves, EmptySearch, SearchStage};
 
 #[test]
 fn returns_no_moves_when_passages_are_closed() {

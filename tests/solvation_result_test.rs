@@ -1,6 +1,6 @@
-use mazeAlgorithm::domain::position::Position;
-use mazeAlgorithm::solvation::SearchEvent;
-use mazeAlgorithm::solvation::SolvationResult;
+use maze_algorithm::domain::position::Position;
+use maze_algorithm::solvation::SearchEvent;
+use maze_algorithm::solvation::SolvationResult;
 
 #[test]
 fn solved_when_path_exists() {

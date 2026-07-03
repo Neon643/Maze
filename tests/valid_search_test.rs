@@ -1,8 +1,8 @@
-use mazeAlgorithm::domain::maze::Maze;
-use mazeAlgorithm::domain::maze_size::MazeSize;
-use mazeAlgorithm::domain::position::Position;
-use mazeAlgorithm::solvation::SolvationTask;
-use mazeAlgorithm::solvation::dfs::{EmptySearch, SearchStage, SearchState, ValidSearch};
+use maze_algorithm::domain::maze::Maze;
+use maze_algorithm::domain::maze_size::MazeSize;
+use maze_algorithm::domain::position::Position;
+use maze_algorithm::solvation::SolvationTask;
+use maze_algorithm::solvation::dfs::{EmptySearch, SearchStage, SearchState, ValidSearch};
 
 #[test]
 fn returns_ready_state_when_task_is_valid() {
