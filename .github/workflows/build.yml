@@ -13,17 +13,17 @@ jobs:
           - os: macos-14
             target: aarch64-apple-darwin
             artifact: mazeAlgorithm-macos-arm64
-            binary: target/aarch64-apple-darwin/release/mazeAlgorithm
+            binary: target/aarch64-apple-darwin/release/maze_algorithm
 
           - os: ubuntu-22.04
             target: x86_64-unknown-linux-gnu
             artifact: mazeAlgorithm-linux-x86_64
-            binary: target/x86_64-unknown-linux-gnu/release/mazeAlgorithm
+            binary: target/x86_64-unknown-linux-gnu/release/maze_algorithm
 
           - os: windows-2022
             target: x86_64-pc-windows-msvc
             artifact: mazeAlgorithm-windows-x86_64
-            binary: target/x86_64-pc-windows-msvc/release/mazeAlgorithm.exe
+            binary: target/x86_64-pc-windows-msvc/release/maze_algorithm.exe
 
     runs-on: ${{ matrix.os }}
 
