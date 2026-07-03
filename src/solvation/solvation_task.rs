@@ -17,6 +17,7 @@ impl SolvationTask {
             finish,
         }
     }
+
     /// Checks whether start and finish positions belong to maze.
     ///
     /// This method does not check that path between positions exists.
@@ -24,6 +25,7 @@ impl SolvationTask {
     pub fn valid(&self) -> bool {
         self.maze.contains(self.start) && self.maze.contains(self.finish)
     }
+
     /// Returns maze positions directly reachable from given position.
     pub fn passable_neighbors(&self, position: Position) -> Vec<Position> {
         Direction::ALL
@@ -32,5 +34,15 @@ impl SolvationTask {
             .filter_map(|direction| self.maze.neighbor(position, direction))
             .filter(|neighbor| self.maze.has_passage(position, *neighbor))
             .collect()
+    }
+
+    /// Returns position where search should start.
+    pub fn starts_at(&self) -> Position {
+        self.start
+    }
+
+    /// Checks whether given position is search finish.
+    pub fn finishes_at(&self, position: Position) -> bool {
+        self.finish == position
     }
 }
