@@ -12,7 +12,8 @@ use crate::graphics::maze::maze_painter::MazePainter;
 use crate::graphics::pointer::Pointer;
 use crate::graphics::widgets::control_action::ControlAction;
 use crate::graphics::widgets::control_panel::ControlPanel;
-use crate::solver::depth_first_solver::DepthFirstSolver;
+use crate::solvation::dfs::{DepthFirstSearch, DepthFirstSolvation, EmptySearch, ValidSearch};
+use crate::solvation::{Solvation, SolvationTask};
 
 pub struct MazeApp {
     setup: MazeSetup,
@@ -79,13 +80,15 @@ impl MazeApp {
             }
             ControlAction::Solve => {
                 if matches!(self.state, AppState::Finished) {
-                    let solve = DepthFirstSolver::new(
-                        self.generation_playback.maze(),
-                        self.setup.start(),
-                        self.setup.finish(),
-                    );
-                    let (_path, steps) = solve.solve_with_steps().into_parts();
-                    let animation = SearchAnimation::new(steps);
+                    let solvation = DepthFirstSolvation::new(DepthFirstSearch::new(
+                        ValidSearch::new(EmptySearch::new(SolvationTask::new(
+                            self.generation_playback.maze().clone(),
+                            self.setup.start(),
+                            self.setup.finish(),
+                        ))),
+                    ));
+
+                    let animation = SearchAnimation::new(solvation.eval().into_events());
                     self.search_playback = Some(SearchPlayback::new(animation));
                     self.state = AppState::Solving;
                 }
