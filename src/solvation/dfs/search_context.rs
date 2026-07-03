@@ -1,21 +1,48 @@
+use crate::domain::position::Position;
 use crate::solvation::SolvationTask;
+use crate::solvation::dfs::SearchTrace;
 
 /// Prepared DFS search context.
 ///
-/// `SearchContext` is created by the first DFS pipeline stage and then passed
-/// through validation and traversal stages.
+/// `SearchContext` keeps solvation task together with immutable DFS trace.
+/// Every search action returns new context.
 pub struct SearchContext {
     task: SolvationTask,
+    trace: SearchTrace,
 }
 
 impl SearchContext {
-    /// Creates DFS context from solvation task.
+    /// Creates DFS context from solvation task and empty trace.
     pub fn new(task: SolvationTask) -> Self {
-        Self { task }
+        Self {
+            task,
+            trace: SearchTrace::new(),
+        }
     }
 
     /// Checks whether context contains executable solvation task.
     pub fn valid(&self) -> bool {
         self.task.valid()
+    }
+
+    /// Checks whether position was already reached by DFS.
+    pub fn reached(&self, position: Position) -> bool {
+        self.trace.reached(position)
+    }
+
+    /// Returns new context with entered position recorded.
+    pub fn entered(self, position: Position) -> Self {
+        Self {
+            task: self.task,
+            trace: self.trace.entered(position),
+        }
+    }
+
+    /// Returns new context with current dead end discarded.
+    pub fn backtracked(self) -> Self {
+        Self {
+            task: self.task,
+            trace: self.trace.backtracked(),
+        }
     }
 }
