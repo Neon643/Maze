@@ -1,4 +1,5 @@
 use crate::domain::position::Position;
+use crate::solvation::SolvationResult;
 use crate::solvation::dfs::{SearchEvents, SearchPath, VisitedPositions};
 
 /// DFS trace composed from visited positions, current path and search events.
@@ -46,5 +47,17 @@ impl SearchTrace {
             path,
             events,
         }
+    }
+    /// Converts trace into successful solvation result.
+    pub(super) fn succeeded(self) -> SolvationResult {
+        let path = self.path.into_vec();
+        let events = self.events.finished(path.clone()).into_vec();
+
+        SolvationResult::new(Some(path), events)
+    }
+
+    /// Converts trace into failed solvation result.
+    pub(super) fn failed(self) -> SolvationResult {
+        SolvationResult::new(None, self.events.into_vec())
     }
 }
