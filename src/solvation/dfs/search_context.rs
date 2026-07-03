@@ -59,4 +59,14 @@ impl SearchContext {
     pub fn failed(self) -> SolvationResult {
         self.trace.failed()
     }
+
+    /// Returns position where DFS should start.
+    pub fn starts_at(&self) -> Position {
+        self.task.starts_at()
+    }
+
+    /// Checks whether DFS reached finish position.
+    pub fn finishes_at(&self, position: Position) -> bool {
+        self.task.finishes_at(position)
+    }
 }
