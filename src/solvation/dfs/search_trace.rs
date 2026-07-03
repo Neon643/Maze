@@ -4,7 +4,7 @@ use crate::solvation::dfs::{SearchEvents, SearchPath, VisitedPositions};
 /// DFS trace composed from visited positions, current path and search events.
 ///
 /// `SearchTrace` coordinates trace objects without exposing their internal
-/// collections.
+/// collections. Every search action returns new trace.
 #[derive(Default)]
 pub struct SearchTrace {
     visited: VisitedPositions,
@@ -23,17 +23,28 @@ impl SearchTrace {
         self.visited.reached(position)
     }
 
-    /// Records DFS entrance into position.
-    pub fn enter(&mut self, position: Position) {
-        self.visited.visit(position);
-        self.path.push(position);
-        self.events.visited(position);
+    /// Returns new trace with DFS entrance into position recorded.
+    pub fn entered(self, position: Position) -> Self {
+        Self {
+            visited: self.visited.visited(position),
+            path: self.path.pushed(position),
+            events: self.events.visited(position),
+        }
     }
 
-    /// Records DFS return from current dead end.
-    pub fn backtrack(&mut self) {
-        if let Some(position) = self.path.backtrack() {
-            self.events.discarded(position);
+    /// Returns new trace with DFS return from current dead end recorded.
+    pub fn backtracked(self) -> Self {
+        let (path, discarded) = self.path.backtracked();
+
+        let events = match discarded {
+            Some(position) => self.events.discarded(position),
+            None => self.events,
+        };
+
+        Self {
+            visited: self.visited,
+            path,
+            events,
         }
     }
 }
