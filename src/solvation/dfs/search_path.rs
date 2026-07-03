@@ -29,4 +29,8 @@ impl SearchPath {
 
         (Self { positions }, discarded)
     }
+    /// Consumes path and returns stored positions.
+    pub(super) fn into_vec(self) -> Vec<Position> {
+        self.positions
+    }
 }
