@@ -48,6 +48,7 @@ impl SearchTrace {
             events,
         }
     }
+
     /// Converts trace into successful solvation result.
     pub(super) fn succeeded(self) -> SolvationResult {
         let path = self.path.into_vec();
