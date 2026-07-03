@@ -14,13 +14,19 @@ impl SearchPath {
         Self::default()
     }
 
-    /// Adds position to current path.
-    pub fn push(&mut self, position: Position) {
-        self.positions.push(position);
+    /// Returns new path with position added.
+    pub fn pushed(self, position: Position) -> Self {
+        let mut positions = self.positions;
+        positions.push(position);
+
+        Self { positions }
     }
 
-    /// Removes last position from current path.
-    pub fn backtrack(&mut self) -> Option<Position> {
-        self.positions.pop()
+    /// Returns new path without last position and discarded position.
+    pub fn backtracked(self) -> (Self, Option<Position>) {
+        let mut positions = self.positions;
+        let discarded = positions.pop();
+
+        (Self { positions }, discarded)
     }
 }
