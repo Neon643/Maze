@@ -4,6 +4,7 @@ use crate::graphics::geometry::point::Point;
 use crate::graphics::geometry::rect_area::RectArea;
 use crate::graphics::pointer::Pointer;
 
+#[derive(Default)]
 pub struct MacroquadPointer;
 
 impl MacroquadPointer {

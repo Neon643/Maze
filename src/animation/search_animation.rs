@@ -1,26 +1,28 @@
 use crate::domain::position::Position;
-use crate::solver::search_step::SearchStep;
+use crate::solvation::SearchEvent;
 
 pub struct SearchAnimation {
-    steps: Vec<SearchStep>,
+    steps: Vec<SearchEvent>,
     index: usize,
 }
 
 impl SearchAnimation {
-    pub fn new(steps: Vec<SearchStep>) -> Self {
+    pub fn new(steps: Vec<SearchEvent>) -> Self {
         Self { steps, index: 0 }
     }
 
     pub fn tick(&mut self, path: &mut Vec<Position>) {
         if self.index < self.steps.len() {
             match &self.steps[self.index] {
-                SearchStep::Entered(position) => {
+                SearchEvent::Visited(position) => {
                     path.push(*position);
                 }
-                SearchStep::Backtracked => {
-                    path.pop();
+                SearchEvent::Discarded(position) => {
+                    if path.last() == Some(position) {
+                        path.pop();
+                    }
                 }
-                SearchStep::Finished(final_path) => {
+                SearchEvent::Finished(final_path) => {
                     *path = final_path.clone();
                 }
             }

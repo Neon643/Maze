@@ -1,5 +1,5 @@
-use mazeAlgorithm::domain::position::Position;
-use mazeAlgorithm::solvation::SearchEvent;
+use maze_algorithm::domain::position::Position;
+use maze_algorithm::solvation::SearchEvent;
 
 #[test]
 fn visited_event_stores_position() {

@@ -19,4 +19,8 @@ impl SolvationResult {
     pub fn solved(&self) -> bool {
         self.path.is_some()
     }
+    /// Consumes result and returns recorded search events.
+    pub fn into_events(self) -> Vec<SearchEvent> {
+        self.events
+    }
 }

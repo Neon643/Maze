@@ -1,11 +1,11 @@
-use mazeAlgorithm::app::maze_app::MazeApp;
-use mazeAlgorithm::app::maze_setup::MazeSetup;
-use mazeAlgorithm::domain::maze_size::MazeSize;
-use mazeAlgorithm::generator::random_positions::RandomPositions;
-use mazeAlgorithm::generator::wilson::wilson_generator::WilsonGenerator;
-use mazeAlgorithm::graphics::adapters::macroquad_canvas::MacroquadCanvas;
-use mazeAlgorithm::graphics::adapters::macroquad_pointer::MacroquadPointer;
-use mazeAlgorithm::graphics::app_layout::AppLayout;
+use maze_algorithm::app::maze_app::MazeApp;
+use maze_algorithm::app::maze_setup::MazeSetup;
+use maze_algorithm::domain::maze_size::MazeSize;
+use maze_algorithm::generator::random_positions::RandomPositions;
+use maze_algorithm::generator::wilson::wilson_generator::WilsonGenerator;
+use maze_algorithm::graphics::adapters::macroquad_canvas::MacroquadCanvas;
+use maze_algorithm::graphics::adapters::macroquad_pointer::MacroquadPointer;
+use maze_algorithm::graphics::app_layout::AppLayout;
 
 use macroquad::prelude::*;
 
